@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="An independent website concept for States Barbershop & Lounge in Nairobi. Explore grooming services and contact the team.">
+  <title>States Barbershop & Lounge | Nairobi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #11110f;
+      --surface: #191916;
+      --surface-2: #22221d;
+      --cream: #f2ede3;
+      --muted: #a6a197;
+      --gold: #d6b477;
+      --gold-light: #ead3a5;
+      --line: rgba(242,237,227,.15);
+      --sans: "DM Sans", sans-serif;
+      --serif: "Playfair Display", Georgia, serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; background: var(--bg); color: var(--cream); font-family: var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; object-fit: cover; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1160px, 90%); margin: auto; }
+    section { padding: 100px 0; }
+    .eyebrow { color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: 2.8px; text-transform: uppercase; }
+    h1, h2, h3 { font-weight: 500; }
+    h2 { font-family: var(--serif); font-size: clamp(35px, 5vw, 60px); line-height: 1.08; letter-spacing: -1.3px; margin: 17px 0; }
+    .intro { max-width: 540px; color: var(--muted); line-height: 1.9; font-size: 14px; }
+    .gold { color: var(--gold); }
+
+    .preview-bar {
+      padding: 10px 16px; text-align: center; font-size: 10px;
+      letter-spacing: .5px; line-height: 1.6; color: #d6d0c4;
+      background: #26251f;
+    }
+    .preview-bar strong { color: var(--gold-light); }
+
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(17,17,15,.96); border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-icon {
+      display: grid; place-items: center; width: 42px; height: 42px;
+      border: 1px solid var(--gold); color: var(--gold);
+      font: 25px var(--serif);
+    }
+    .brand-text { font-family: var(--serif); font-size: 17px; letter-spacing: .2px; }
+    .brand-text small {
+      display: block; margin-top: 4px; color: var(--gold);
+      font: 9px var(--sans); letter-spacing: 3px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 27px; font-size: 11px; color: #d6d1c6; }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .button {
+      display: inline-flex; justify-content: center; align-items: center; gap: 10px;
+      border: 1px solid var(--gold); padding: 14px 20px; min-height: 45px;
+      background: var(--gold); color: #171611; font-size: 11px; font-weight: 700;
+      cursor: pointer; transition: background .2s, transform .2s, color .2s;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--gold-light); }
+    .button-outline { color: var(--cream); background: transparent; }
+    .button-outline:hover { color: #171611; }
+    .arrow { font-size: 16px; }
+
+    .hero { position: relative; min-height: 690px; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-position: center; }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(12,12,10,.94) 0%, rgba(12,12,10,.75) 43%, rgba(12,12,10,.15) 100%),
+                  linear-gradient(0deg, rgba(12,12,10,.75), transparent 40%);
+    }
+    .hero-content { position: relative; z-index: 1; width: 100%; padding: 80px 0 55px; }
+    .hero-kicker { display: flex; align-items: center; gap: 12px; color: #e2d5bd; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; }
+    .hero-kicker::before { content: ""; height: 1px; width: 35px; background: var(--gold); }
+    .hero h1 {
+      margin: 28px 0 20px; max-width: 800px;
+      font: 500 clamp(51px, 8.5vw, 100px)/.99 var(--serif); letter-spacing: -3px;
+    }
+    .hero h1 span { color: var(--gold-light); font-style: italic; }
+    .hero-copy { max-width: 445px; color: #d1ccc2; font-size: 14px; line-height: 1.9; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 29px; }
+    .hero-meta { display: flex; gap: 35px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.24); padding-top: 22px; margin-top: 62px; }
+    .meta-item { color: #c7c1b5; font-size: 10px; line-height: 1.8; }
+    .meta-item strong { display: block; color: #f2ede3; font-size: 12px; font-weight: 600; }
+
+    .marquee { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; overflow: hidden; }
+    .marquee-inner { display: flex; justify-content: space-around; gap: 25px; align-items: center; white-space: nowrap; }
+    .marquee span { font: 14px var(--serif); letter-spacing: 1px; color: #ded6c8; }
+    .marquee i { font-style: normal; color: var(--gold); margin-left: 26px; }
+
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 35px; margin-bottom: 42px; }
+    .section-heading h2 { margin-bottom: 0; max-width: 560px; }
+    .section-heading .intro { max-width: 390px; }
+
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .service {
+      padding: 29px; min-height: 245px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      transition: background .25s;
+    }
+    .service:hover { background: var(--surface); }
+    .service-top { display: flex; justify-content: space-between; align-items: center; color: var(--gold); font-size: 10px; letter-spacing: 1px; }
+    .service-icon { font: 28px var(--serif); }
+    .service h3 { margin: 35px 0 10px; font: 25px var(--serif); }
+    .service p { margin: 0; max-width: 290px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+
+    .experience { background: #191916; }
+    .experience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 75px; align-items: center; }
+    .experience-photo { min-height: 530px; position: relative; }
+    .experience-photo img { position: absolute; inset: 0; height: 100%; }
+    .photo-caption {
+      position: absolute; left: 18px; bottom: 18px; padding: 13px 17px;
+      background: rgba(17,17,15,.9); border-left: 2px solid var(--gold);
+      font-size: 10px; letter-spacing: 1px;
+    }
+    .experience-copy p { color: var(--muted); font-size: 13px; line-height: 2; }
+    .benefits { list-style: none; margin: 27px 0 30px; padding: 0; }
+    .benefits li { padding: 15px 0; border-bottom: 1px solid var(--line); color: #e5dfd3; font-size: 12px; display: flex; gap: 14px; line-height: 1.7; }
+    .benefits li span { color: var(--gold); }
+
+    .gallery { display: grid; grid-template-columns: 1.15fr .85fr .85fr; grid-template-rows: 230px 230px; gap: 12px; }
+    .gallery-item { position: relative; background: var(--surface); overflow: hidden; }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img { height: 100%; transition: transform .6s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent,rgba(0,0,0,.75)); }
+    .gallery-title { position: absolute; z-index: 1; left: 17px; bottom: 18px; font: 19px var(--serif); }
+
+    .lounge { background: var(--surface); padding: 0; }
+    .lounge-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 470px; }
+    .lounge-image img { height: 100%; min-height: 470px; }
+    .lounge-copy { padding: 75px clamp(25px, 6vw, 85px); display: flex; flex-direction: column; justify-content: center; }
+    .lounge-copy p { color: var(--muted); font-size: 13px; line-height: 2; max-width: 460px; }
+    .lounge-quote { color: var(--gold-light); font: italic 24px/1.5 var(--serif); margin: 25px 0 30px; }
+
+    .contact-panel { border: 1px solid var(--line); display: grid; grid-template-columns: 1fr .85fr; }
+    .contact-main { padding: clamp(28px, 5vw, 60px); }
+    .contact-main h2 { font-size: clamp(37px, 5vw, 58px); }
+    .contact-main > p { color: var(--muted); font-size: 13px; line-height: 1.9; max-width: 440px; }
+    .contact-info { background: #191916; padding: 38px; display: flex; flex-direction: column; justify-content: center; }
+    .detail { border-bottom: 1px solid var(--line); padding: 16px 0; }
+    .detail small { display: block; color: var(--gold); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 9px; }
+    .detail p, .detail a { margin: 0; font-size: 12px; line-height: 1.9; color: #e2ddd3; }
+    .contact-info .button { margin-top: 22px; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+
+    .enquiry { background: #191916; margin-top: 25px; padding: 28px; border: 1px solid var(--line); }
+    .enquiry h3 { font: 25px var(--serif); margin: 0 0 7px; }
+    .enquiry > p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 10px; color: #d6cfc0; }
+    .field input, .field select, .field textarea {
+      width: 100%; border: 1px solid var(--line); border-radius: 0;
+      padding: 13px; color: var(--cream); background: #11110f; outline: none; font-size: 12px;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); }
+    .field textarea { min-height: 85px; resize: vertical; }
+    .field select option { background: #11110f; }
+
+    footer { padding: 28px 0; border-top: 1px solid var(--line); }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 10px; line-height: 1.8; }
+    .footer-brand { font: 18px var(--serif); color: var(--cream); }
+
+    @media(max-width: 800px) {
+      section { padding: 76px 0; }
+      .nav { min-height: 70px; }
+      .nav-links { gap: 15px; }
+      .nav-links a:nth-child(2), .nav-links a:nth-child(3) { display: none; }
+      .nav > .button { padding: 12px; font-size: 10px; }
+      .hero { min-height: 670px; }
+      .hero::after { background: linear-gradient(90deg,rgba(12,12,10,.88),rgba(12,12,10,.25)),linear-gradient(0deg,rgba(12,12,10,.8),transparent 65%); }
+      .hero h1 { letter-spacing: -2px; }
+      .section-heading { display: block; }
+      .section-heading .intro { margin-top: 20px; }
+      .services { grid-template-columns: 1fr 1fr; }
+      .experience-grid { grid-template-columns: 1fr; gap: 35px; }
+      .experience-photo { min-height: 400px; }
+      .gallery { grid-template-rows: 200px 170px 170px; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
+      .lounge-grid { grid-template-columns: 1fr; }
+      .lounge-image img { min-height: 350px; max-height: 470px; }
+      .lounge-copy { padding: 50px 6%; }
+      .contact-panel { grid-template-columns: 1fr; }
+    }
+
+    @media(max-width: 480px) {
+      .container { width: 90%; }
+      .brand-text { font-size: 14px; }
+      .brand-icon { width: 36px; height: 36px; }
+      .nav-links { display: none; }
+      .hero { min-height: 630px; }
+      .hero h1 { font-size: 54px; }
+      .hero-meta { gap: 20px; margin-top: 45px; }
+      .services { grid-template-columns: 1fr; }
+      .service { min-height: 210px; }
+      .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 150px 150px; }
+      .gallery-title { font-size: 16px; left: 12px; bottom: 12px; }
+      .contact-info { padding: 28px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .footer-row { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="preview-bar">
+    <strong>INDEPENDENT CONCEPT PREVIEW</strong> &nbsp; A website concept created to demonstrate a possible online experience.
+  </div>
+
+  <header>
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="States Barbershop and Lounge home">
+        <span class="brand-icon">S</span>
+        <span class="brand-text">STATES <small>BARBERSHOP &amp; LOUNGE</small></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#services">Grooming</a>
+        <a href="#experience">The experience</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Visit us</a>
+      </div>
+
+      <a class="button" href="#contact">Get in touch <span class="arrow">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" style="padding:0">
+      <img class="hero-bg"
+        src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=2000&q=85"
+        alt="Barber carefully working on a client's haircut">
+
+      <div class="hero-content">
+        <div class="container">
+          <div class="hero-kicker">Umoja · Nairobi · Kenya</div>
+
+          <h1>Own your look.<br>Enjoy the <span>moment.</span></h1>
+
+          <p class="hero-copy">
+            More than a haircut. Discover a grooming concept inspired by the
+            confident style, skilled barbering and relaxed lounge atmosphere
+            customers look for.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#services">Explore grooming <span class="arrow">↘</span></a>
+            <a class="button button-outline" href="#contact">Plan your visit</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item"><strong>Sharp details</strong>Grooming with care</div>
+            <div class="meta-item"><strong>Lounge atmosphere</strong>Relax and unwind</div>
+            <div class="meta-item"><strong>Moi Drive, Nairobi</strong>Find the location</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-label="Grooming categories">
+      <div class="container marquee-inner">
+        <span>HAIRCUTS <i>✳</i></span>
+        <span>BEARD CARE <i>✳</i></span>
+        <span>GROOMING <i>✳</i></span>
+        <span>LOUNGE EXPERIENCE</span>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">The grooming menu</div>
+            <h2>Your style.<br>Down to every detail.</h2>
+          </div>
+          <p class="intro">
+            Find the kind of grooming you need and contact the team to confirm
+            current services, prices and availability. No guesswork required.
+          </p>
+        </div>
+
+        <div class="services">
+          <article class="service">
+            <div class="service-top"><span>01 / HAIR</span><span class="service-icon">✳</span></div>
+            <h3>Haircuts &amp; fades</h3>
+            <p>From a clean everyday look to a fresh new style, discuss the cut you have in mind with your barber.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top"><span>02 / BEARD</span><span class="service-icon">⌁</span></div>
+            <h3>Beard shaping</h3>
+            <p>Give your beard and hairline the attention they deserve. Ask about the available grooming options.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top"><span>03 / FINISH</span><span class="service-icon">◇</span></div>
+            <h3>Personal grooming</h3>
+            <p>Explore additional grooming treatments with the team and confirm what's suitable for your needs.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top"><span>04 / CARE</span><span class="service-icon">✧</span></div>
+            <h3>Face care enquiries</h3>
+            <p>Ask about available face-care options and the products used before choosing any treatment.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top"><span>05 / COMFORT</span><span class="service-icon">◌</span></div>
+            <h3>The lounge</h3>
+            <p>A more relaxed approach to the visit, inspired by the barbershop-and-lounge concept.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-top"><span>06 / YOUR VISIT</span><span class="service-icon">↗</span></div>
+            <h3>Ask before you come</h3>
+            <p>Contact the shop to confirm its current services, pricing, waiting times and any extras.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" id="experience">
+      <div class="container experience-grid">
+        <div class="experience-photo">
+          <img
+            src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=85"
+            alt="A barber giving a client a careful haircut"
+            loading="lazy">
+          <div class="photo-caption">A LITTLE MORE CARE. A LOT MORE CHARACTER.</div>
+        </div>
+
+        <div class="experience-copy">
+          <div class="eyebrow">The States experience</div>
+          <h2>Come for the cut.<br>Stay for the <span class="gold">feeling.</span></h2>
+          <p>
+            A great barbershop visit is about more than the mirror at the end.
+            It's about feeling comfortable, communicating the style you want
+            and giving the details the attention they deserve.
+          </p>
+          <p>
+            This concept puts that experience first with clear service
+            information, easy contact and a more considered presentation.
+          </p>
+
+          <ul class="benefits">
+            <li><span>01.</span> A clear view of grooming options</li>
+            <li><span>02.</span> A welcoming, lounge-inspired visual identity</li>
+            <li><span>03.</span> Direct contact for enquiries before your visit</li>
+            <li><span>04.</span> Convenient directions to the location</li>
+          </ul>
+
+          <a href="#contact" class="button">Talk to the team <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">The details matter</div>
+            <h2>Look sharp.<br>Feel like yourself.</h2>
+          </div>
+          <p class="intro">
+            A selection of illustrative barbering and grooming photography
+            to bring this concept to life. These are not verified photos of
+            the actual States premises or staff.
+          </p>
+        </div>
+
+        <div class="gallery">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1100&q=85"
+              alt="Barbershop interior and styling stations"
+              loading="lazy">
+            <div class="gallery-title">The atmosphere</div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=750&q=85"
+              alt="Barber tools and haircut details"
+              loading="lazy">
+            <div class="gallery-title">The craft</div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=750&q=85"
+              alt="Men's style and grooming"
+              loading="lazy">
+            <div class="gallery-title">The style</div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5?auto=format&fit=crop&w=750&q=85"
+              alt="Professional barbering"
+              loading="lazy">
+            <div class="gallery-title">The precision</div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?auto=format&fit=crop&w=750&q=85"
+              alt="Classic men's grooming inspiration"
+              loading="lazy">
+            <div class="gallery-title">The finish</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lounge">
+      <div class="lounge-grid">
+        <div class="lounge-image">
+          <img
+            src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1200&q=85"
+            alt="Warm, refined interior design inspiration"
+            loading="lazy">
+        </div>
+        <div class="lounge-copy">
+          <div class="eyebrow">More than the mirror</div>
+          <h2>Make time for yourself.</h2>
+          <p>
+            The lounge idea is about making your grooming visit feel like
+            time well spent. Settle in, explain what you want and give your
+            barber the chance to get the details right.
+          </p>
+          <div class="lounge-quote">“Good style is personal. The experience should be too.”</div>
+          <p>
+            This is proposed concept copy, not a quotation from the business.
+            Contact States directly to confirm its current amenities and services.
+          </p>
+          <a class="button button-outline" href="#contact">Find States <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Visit States</div>
+            <h2>Your next cut<br>starts with a message.</h2>
+          </div>
+          <p class="intro">
+            Enquire about a haircut or another grooming service, confirm
+            the current details, then plan your visit.
+          </p>
+        </div>
+
+        <div class="contact-panel">
+          <div class="contact-main">
+            <div class="eyebrow">Get in touch</div>
+            <h2>Let's talk<br>grooming.</h2>
+            <p>
+              Reach out to the team to ask about available services, prices,
+              opening hours or expected waiting times.
+            </p>
+
+            <div class="contact-actions">
+              <a class="button"
+                 href="https://wa.me/254757851301?text=Hello%20States%20Barbershop%20%26%20Lounge%2C%20I%27d%20like%20to%20enquire%20about%20your%20services."
+                 target="_blank" rel="noopener noreferrer">
+                 WhatsApp enquiry <span class="arrow">↗</span>
+              </a>
+              <a class="button button-outline"
+                 href="https://www.google.com/maps/search/?api=1&query=States+Barbershop+and+Lounge%2C+PV7Q%2BH46%2C+Moi+Drive%2C+Nairobi"
+                 target="_blank" rel="noopener noreferrer">
+                 Get directions <span class="arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-info">
+            <div class="detail">
+              <small>Location</small>
+              <p>PV7Q+H46, Moi Drive<br>Nairobi, Kenya<br>Located in Potters House, according to the supplied listing.</p>
+            </div>
+            <div class="detail">
+              <small>Call the shop</small>
+              <a href="tel:+254757851301">0757 851301</a>
+            </div>
+            <div class="detail">
+              <small>Opening hours</small>
+              <p>Listed hours indicate 8:00 AM–10:00 PM.<br>Please verify before visiting.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="enquiry">
+          <h3>Send a grooming enquiry</h3>
+          <p>Fill this out to open a prepared WhatsApp message. It won't confirm an appointment, and nothing is stored by this demo.</p>
+
+          <form id="enquiryForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="customerName">Your name</label>
+                <input id="customerName" name="customerName" autocomplete="name" required placeholder="Enter your name">
+              </div>
+
+              <div class="field">
+                <label for="service">What are you enquiring about?</label>
+                <select id="service" name="service" required>
+                  <option value="">Select a service</option>
+                  <option>Haircut or fade</option>
+                  <option>Beard shaping</option>
+                  <option>Face care or grooming</option>
+                  <option>Other service</option>
+                  <option>Prices and opening hours</option>
+                </select>
+              </div>
+
+              <div class="field full">
+                <label for="message">Additional details (optional)</label>
+                <textarea id="message" name="message" placeholder="Describe the style or ask a question"></textarea>
+              </div>
+            </div>
+            <button class="button" type="submit">Continue to WhatsApp <span class="arrow">↗</span></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <a class="footer-brand" href="#home">STATES <span class="gold">.</span></a>
+      <div>Moi Drive · Nairobi, Kenya</div>
+      <div>© <span id="year"></span> · Independent website concept</div>
+    </div>
+  </footer>
+
+  <div class="preview-bar">
+    <strong>CONCEPT PREVIEW:</strong> This is an independent demonstration, not the official States Barbershop &amp; Lounge website. The business has not been represented as having commissioned or approved it. Images are illustrative, and service details should be confirmed directly.
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("enquiryForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("customerName").value.trim();
+      const service = document.getElementById("service").value;
+      const details = document.getElementById("message").value.trim();
+
+      if (!name || !service) {
+        alert("Please enter your name and select an enquiry type.");
+        return;
+      }
+
+      let message =
+        "Hello States Barbershop & Lounge. My name is " + name +
+        ". I'd like to enquire about: " + service + ".";
+
+      if (details) {
+        message += " Additional details: " + details;
+      }
+
+      message += " Please confirm availability and pricing. Thank you.";
+
+      const whatsappUrl =
+        "https://wa.me/254757851301?text=" + encodeURIComponent(message);
+
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    });
+  </script>
+</body>
+</html>
